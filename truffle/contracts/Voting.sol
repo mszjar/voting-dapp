@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity >=0.4.22 <0.9.0;
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 /// @title A Decentralized Voting Contract
 /// @notice This contract allows for decentralized voting
@@ -158,17 +158,10 @@ contract Voting is Ownable {
     }
 
 
-//    function tallyVotes() external onlyOwner {
-//        require(workflowStatus == WorkflowStatus.VotingSessionEnded, "Current status is not voting session ended");
-//        uint _winningProposalId;
-//       for (uint256 p = 0; p < proposalsArray.length; p++) {
-//            if (proposalsArray[p].voteCount > proposalsArray[_winningProposalId].voteCount) {
-//                _winningProposalId = p;
-//           }
-//        }
-//        winningProposalID = _winningProposalId;
-
-//        workflowStatus = WorkflowStatus.VotesTallied;
-//        emit WorkflowStatusChange(WorkflowStatus.VotingSessionEnded, WorkflowStatus.VotesTallied);
-//     }
+    // ::::::::::::: TALLY ::::::::::::: //
+    function tallyVotes() external onlyOwner {
+        require(workflowStatus == WorkflowStatus.VotingSessionEnded, "Current status is not voting session ended");
+        workflowStatus = WorkflowStatus.VotesTallied;
+        emit WorkflowStatusChange(WorkflowStatus.VotingSessionEnded, WorkflowStatus.VotesTallied);
+    }
 }
